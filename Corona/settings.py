@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,6 +86,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# AUTH_USER_MODEL = 'django.contrib.auth.models.AbstractUser'
+TOKEN_EXPIRED_AFTER_SECONDS = 60 * 60 * 4
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'main.Authentication.ExpiringTokenAuthentication',
+    ]
 }
 
 
